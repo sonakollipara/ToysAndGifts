@@ -1,0 +1,48 @@
+﻿@model IEnumerable<Toys>
+
+@{
+    ViewData["Title"] = "List of Toys";
+}
+
+
+<style>
+
+    .read-more,
+    .read-less {
+        display: none;
+    }
+    .show-read-more .read-more {
+        display: inline-block;
+    }
+
+    .show-read-less .read-less {
+        display: inline-block;
+    }
+</style>
+
+<div class="row">
+    @foreach (Toys toys in Model)
+    {
+       @Html.Partial("ToysSummary", toys);
+    }
+</div>
+
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+<script>
+    $(document).ready(function () {
+
+        $('.short-description').addClass('show-read-more');
+        $('.read-more').click(function () {
+            var container = $(this).closest('.short-description');
+            container.find('.long-description').toggle();
+            container.addClass('show-read-less').removeClass('show-read-more');
+
+        });
+
+        $('.read-less').click(function () {
+            var container = $(this).closest('.short-description');
+            container.find('.long-description').toggle();
+            container.addClass('show-read-more').removeClass('show-read-less');
+        })
+    });
+</script>

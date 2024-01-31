@@ -1,0 +1,26 @@
+﻿@*@using ToysAndGifts.Models
+@model IEnumerable<Toys>
+*@
+@using ToysAndGifts.ViewModels
+@model ToysListViewModel
+
+
+<div>
+	<h2>
+		All Toys are shown here
+	</h2>
+</div>
+
+@*<h2>@ViewBag.Name</h2>*@
+
+<h2>@Model.CurrentCategory</h2>
+@{
+	foreach (var toys in Model.Toys)
+	{
+		<div>
+			<h4>Toys Name: @toys.Name</h4>
+			<p>Price: @toys.Price.ToString("c")</p>
+			
+		</div>
+	}
+}
